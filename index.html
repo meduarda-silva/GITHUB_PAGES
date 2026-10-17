@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maria Eduarda Silva • Dev & Finance</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #FDFBF7;
+      --card-bg: rgba(255, 255, 255, 0.88);
+      --accent-pink: #E2959B;
+      --accent-rose-soft: #FAF0F2;
+      --accent-lavender: #EAE5F3;
+      --accent-gold: #D6A76E;
+      --text-dark: #2E282A;
+      --text-muted: #6E6569;
+      --border-color: #F0E6E8;
+      --shadow-soft: 0 16px 40px rgba(226, 149, 155, 0.12);
+      --radius-xl: 24px;
+      --radius-sm: 12px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-dark);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Background Aesthetic Glows */
+    .glow-1 {
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(226,149,155,0.2) 0%, rgba(253,251,247,0) 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .glow-2 {
+      position: absolute;
+      top: 600px;
+      left: -150px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(234,229,243,0.3) 0%, rgba(253,251,247,0) 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Layout Container */
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header Navbar */
+    header {
+      padding: 32px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-logo span {
+      color: var(--accent-pink);
+      font-style: italic;
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent-pink);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 60px 0 90px 0;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-rose-soft);
+      border: 1px solid rgba(226, 149, 155, 0.3);
+      color: var(--accent-pink);
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.4rem;
+      line-height: 1.15;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .hero-title em {
+      color: var(--accent-pink);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .hero-bio {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-pink);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow: 0 8px 20px rgba(226, 149, 155, 0.35);
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(226, 149, 155, 0.45);
+      background-color: #d88389;
+    }
+
+    .btn-secondary {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 14px 24px;
+      border-radius: 50px;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: #fff;
+      border-color: var(--accent-pink);
+      color: var(--accent-pink);
+    }
+
+    /* Hero Profile Card */
+    .hero-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      border: 1px solid #FFF;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+    }
+
+    .card-header-profile {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .avatar-box {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-rose-soft), var(--accent-lavender));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: inset 0 2px 4px rgba(255,255,255,0.8);
+    }
+
+    .info-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: rgba(250, 240, 242, 0.5);
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+    }
+
+    .info-item strong {
+      color: var(--text-dark);
+    }
+
+    .info-item span {
+      color: var(--text-muted);
+    }
+
+    /* Section Headings */
+    .section-header {
+      margin-bottom: 36px;
+    }
+
+    .section-tag {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--accent-pink);
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    /* Interseção Tech + Contabilidade */
+    .synergy-card {
+      background: linear-gradient(135deg, #FFFFFF 0%, var(--accent-rose-soft) 100%);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 90px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .synergy-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .synergy-content p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .synergy-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag-chip {
+      background: #FFF;
+      color: var(--text-dark);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      border: 1px solid var(--border-color);
+    }
+
+    /* Study Hub Section */
+    .study-section {
+      margin-bottom: 90px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: #FFF;
+      border: 1px solid var(--border-color);
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--accent-pink);
+      color: #FFF;
+      border-color: var(--accent-pink);
+      box-shadow: 0 4px 14px rgba(226, 149, 155, 0.3);
+    }
+
+    .study-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 24px;
+    }
+
+    .study-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .study-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(226, 149, 155, 0.18);
+    }
+
+    .card-icon-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: var(--accent-rose-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+
+    .study-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    .study-card p.desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    .subjects-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .subjects-bullets li {
+      font-size: 0.92rem;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .subjects-bullets li::before {
+      content: "✦";
+      color: var(--accent-pink);
+      font-size: 0.75rem;
+    }
+
+    /* Future Projects / Roadmap */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 90px;
+    }
+
+    .project-card {
+      background: #FFF;
+      padding: 28px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent-pink);
+    }
+
+    .project-card span.emoji {
+      font-size: 1.8rem;
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .project-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .project-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* Footer / Contact Banner */
+    .contact-banner {
+      background: linear-gradient(135deg, var(--text-dark) 0%, #1A1617 100%);
+      color: #FFF;
+      border-radius: var(--radius-xl);
+      padding: 48px;
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-banner h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      margin-bottom: 12px;
+    }
+
+    .contact-banner p {
+      color: #BDB5B8;
+      max-width: 500px;
+      margin: 0 auto 28px auto;
+      font-size: 1rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 32px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Toast Notification */
+    #toast {
+      visibility: hidden;
+      min-width: 220px;
+      background-color: var(--text-dark);
+      color: #fff;
+      text-align: center;
+      border-radius: 50px;
+      padding: 12px 24px;
+      position: fixed;
+      z-index: 100;
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%);
+      font-size: 0.9rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      opacity: 0;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    #toast.show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 868px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .synergy-card {
+        grid-template-columns: 1fr;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Decorative Glows -->
+  <div class="glow-1"></div>
+  <div class="glow-2"></div>
+
+  <div class="container">
+    
+    <!-- Navbar -->
+    <header>
+      <a href="#" class="brand-logo">Maria Eduarda<span>.silva</span></a>
+      <nav>
+        <a href="#sobre">Sobre</a>
+        <a href="#sinergia">Conexão</a>
+        <a href="#estudos">Study Hub</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="sobre">
+      <div>
+        <span class="pill-badge">✨ 18 anos • CEUB • Tech & Finance</span>
+        <h1 class="hero-title">Construindo código com precisão e <em>visão analítica.</em></h1>
+        <p class="hero-bio">
+          Olá! Sou <strong>Maria Eduarda Silva</strong>, estudante de Engenharia de Software no CEUB. Apaixonada por criar soluções tecnológicas, fascinada pelo universo da Contabilidade e em constante aperfeiçoamento no idioma inglês.
+        </p>
+        <div class="cta-group">
+          <a href="#estudos" class="btn-primary">Ver Study Hub</a>
+          <a href="#sinergia" class="btn-secondary">Sinergia Tech & Finanças</a>
+        </div>
+      </div>
+
+      <!-- Hero Card Profile -->
+      <div class="hero-card">
+        <div class="card-header-profile">
+          <div class="avatar-box">👩‍💻</div>
+          <div>
+            <strong>Maria Eduarda Silva</strong>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Brasília, DF</p>
+          </div>
+        </div>
+
+        <ul class="info-list">
+          <li class="info-item">
+            <span>Graduação:</span>
+            <strong>Engenharia de Software</strong>
+          </li>
+          <li class="info-item">
+            <span>Instituição:</span>
+            <strong>CEUB</strong>
+          </li>
+          <li class="info-item">
+            <span>Interesses:</span>
+            <strong>Contabilidade & Fintechs</strong>
+          </li>
+          <li class="info-item">
+            <span>Idiomas:</span>
+            <strong>Português & Inglês</strong>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section: Sinergia entre Engenharia e Contabilidade -->
+    <section id="sinergia">
+      <div class="synergy-card">
+        <div class="synergy-content">
+          <span class="section-tag">01 — O Diferencial</span>
+          <h3>Onde a Tecnologia encontra a Contabilidade 📊</h3>
+          <p>
+            A Engenharia de Software me ensina a construir a lógica, modelar bancos de dados e criar algoritmos eficientes. A Contabilidade me dá a sensibilidade de entender a saúde financeira, os números e os negócios. A união das duas áreas cria a base perfeita para o mercado de Fintechs, Business Intelligence e automação contábil.
+          </p>
+        </div>
+        <div class="synergy-tags">
+          <div class="tag-chip">💻 Banco de Dados + Balanços</div>
+          <div class="tag-chip">📈 Fintech & Sistemas ERP</div>
+          <div class="tag-chip">🤖 Automação Financeira</div>
+          <div class="tag-chip">🌐 Inglês para Tech & Business</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Study Hub -->
+    <section class="study-section" id="estudos">
+      <div class="section-header">
+        <span class="section-tag">02 — Organização</span>
+        <h2 class="section-title">Meu Study Hub 🌸</h2>
+        <p style="color: var(--text-muted); margin-top: 6px;">Disciplinas acadêmicas, idiomas e áreas de foco intelectual.</p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs">
+        <button class="tab-btn active" onclick="filterCards('all', this)">Todas as Áreas</button>
+        <button class="tab-btn" onclick="filterCards('eng', this)">Engenharia de Software</button>
+        <button class="tab-btn" onclick="filterCards('fin', this)">Contabilidade & Finanças</button>
+        <button class="tab-btn" onclick="filterCards('ing', this)">Inglês</button>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="study-grid">
+        
+        <!-- Card 1: Engenharia (Construir) -->
+        <div class="study-card" data-category="eng">
+          <div class="card-icon-badge">💻</div>
+          <h4>Engenharia de Software</h4>
+          <p class="desc">Estruturação e base técnica no CEUB (Construir).</p>
+          <ul class="subjects-bullets">
+            <li>Bootcamp 1</li>
+            <li>Fundamentos de Engenharia</li>
+            <li>Banco de Dados 1</li>
+            <li>Engenharia de Software</li>
+            <li>Introdução à Computação</li>
+            <li>Lógica de Programação</li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Contabilidade (Analisar) -->
+        <div class="study-card" data-category="fin">
+          <div class="card-icon-badge">📈</div>
+          <h4>Estudos Contábeis</h4>
+          <p class="desc">Compreensão da lógica financeira e saúde das empresas.</p>
+          <ul class="subjects-bullets">
+            <li>Análise de Balanços & DRE</li>
+            <li>Fluxo de Caixa & Controladoria</li>
+            <li>Tecnologia no Setor Financeiro</li>
+            <li>Matemática Financeira</li>
+          </ul>
+        </div>
+
+        <!-- Card 3: Inglês (Conectar) -->
+        <div class="study-card" data-category="ing">
+          <div class="card-icon-badge">🌐</div>
+          <h4>Curso de Inglês</h4>
+          <p class="desc">Expansão de repertório global e leitura técnica.</p>
+          <ul class="subjects-bullets">
+            <li>Documentações Técnicas & Dev</li>
+            <li>Comunicação Corporativa</li>
+            <li>Prática de Conversação</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section: Projetos e Visão de Futuro -->
+    <section style="margin-bottom: 90px;">
+      <div class="section-header">
+        <span class="section-tag">03 — Aplicação Prática</span>
+        <h2 class="section-title">Ideias & Projetos em Construção 💡</h2>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <span class="emoji">🔍</span>
+          <h4>SQL & Banco de Dados Contábil</h4>
+          <p>Modelagem de tabelas relacionais voltadas para conciliação bancária e dados operacionais.</p>
+        </div>
+        <div class="project-card">
+          <span class="emoji">📊</span>
+          <h4>Dashboard Financeiro</h4>
+          <p>Criação de interfaces visuais para acompanhamento de métricas e indicadores de receita.</p>
+        </div>
+        <div class="project-card">
+          <span class="emoji">⚡</span>
+          <h4>Automação com Python</h4>
+          <p>Scripts para simplificar tarefas repetitivas e análise de relatórios empresariais.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Banner -->
+    <section id="contato">
+      <div class="contact-banner">
+        <h2>Vamos conversar ou colaborar? 💌</h2>
+        <p>Aberta a conexões, trocas de conhecimento sobre engenharia, tecnologia contábil e projetos acadêmicos.</p>
+        <button class="btn-primary" onclick="copyEmail()">Copiar E-mail de Contato</button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2026 • Maria Eduarda Silva</p>
+      <p>Engenharia de Software • CEUB</p>
+    </footer>
+
+  </div>
+
+  <!-- Toast Element -->
+  <div id="toast">E-mail copiado com sucesso! ✨</div>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    // Tab Filter Logic
+    function filterCards(category, btnElement) {
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      btnElement.classList.add('active');
+
+      const cards = document.querySelectorAll('.study-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Copy Email Toast
+    function copyEmail() {
+      const email = "maria.eduarda@exemplo.com";
+      navigator.clipboard.writeText(email);
+      
+      const toast = document.getElementById("toast");
+      toast.className = "show";
+      setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+    }
+  </script>
+</body>
+</html>
