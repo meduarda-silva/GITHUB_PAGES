@@ -11,9 +11,6 @@ Este repositório foi criado para apresentar meu portfólio em formato de site, 
 🌷 Sintam-se todos muito bem-vindos! Fiquem à vontade para explorar meu portfólio.
 
 🌐 Acesse meu portfólio
-
-🔗 Clique aqui para visitar meu site
-
 💜 Obrigada pela visita!
 
 Com dedicação, curiosidade e vontade de aprender, sigo construindo meu caminho rumo a novas oportunidades. 🚀
